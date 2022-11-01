@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class PowerSet {
+public class PowerSet implements IPowerSet{
 
     private ArrayList<String> set;
     private final ArrayList<String> tempSet;
@@ -21,14 +21,6 @@ public class PowerSet {
         subSets = new ArrayList<>();
     }
 
-    private long fastPower(long b, long p) {
-        if (p == 0) return 1;
-        long sq = fastPower(b, p / 2);
-        sq *= sq;
-        if (p % 2 == 1) sq *= b;
-        return sq;
-    }
-
     public void generateSubsetsRecursive(int index) {
         if (index == set.size()) {
             subSets.add(new ArrayList<>(tempSet));
@@ -43,7 +35,7 @@ public class PowerSet {
     }
 
     public void generateSubsetsIterative() {
-        long n = fastPower(2, set.size());
+        int n = 1 << set.size();
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < set.size(); ++j) {
                 if (((i & (1 << j)) >> j) == 1) {

@@ -1,27 +1,29 @@
 package org.Lab2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.*;
 
 public class Main {
+    public static final Scanner input = new Scanner(System.in);
     public static void main(String[] args) {
         PowerSet powerSet = new PowerSet();
-        Scanner input=new Scanner(System.in);
+
         System.out.println("Enter the size of the set: ");
-        int n= input.nextInt();
-        ArrayList<String> set=new ArrayList<>();
-        System.out.println("Enter "+n+" strings: ");
-        for (int i=0;i<n;i++){
-            set.add(input.next());
-        }
+        int n = input.nextInt();
+
+        ArrayList<String> set = new ArrayList<>();
+        System.out.println("Enter " + n + " Strings: ");
+        for (int i = 0; i < n; i++) set.add(input.next());
+        powerSet.setSet(set);
+
         first:
         do {
-            System.out.println("for the recursive approach enter 1");
-            System.out.println("for the iterative approach enter 2");
-            System.out.println("for exit enter 0");
+            System.out.println("For The Recursive Approach Enter 1");
+            System.out.println("For The iterative Approach Enter 2");
+            System.out.println("For Exit Enter 0");
+
             int choice = input.nextInt();
-            powerSet.setSet(set);
+
             switch (choice) {
                 case 1:
                     powerSet.generateSubsetsRecursive(0);
@@ -38,6 +40,6 @@ public class Main {
                 case 0:
                     break first;
             }
-        }while (true);
+        } while (true);
     }
 }
